@@ -1,6 +1,7 @@
 import boto3
 import yaml
 
+
 with open("./auth_credentials.yaml") as f:
     cred = yaml.load(f, Loader=yaml.FullLoader)
 
