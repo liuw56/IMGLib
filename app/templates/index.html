@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <!-- <link rel="stylesheet" href={{ url_for('static',
+    filename='/css/style.css')}}> -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    </div>
+  
+    <ul class="nav nav-tabs" id="register-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" id="login-btn" href="#">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="signup-btn" href="#">Sign up</a>
+      </li>
+    </ul>
+    <div id="register">
+      <div id="login">
+        <form action="/login" method="POST">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="pw">Password</label>
+            <input type="password" name="pw" class="form-control" id="pw">
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+      </div>
+  
+      <div id="signup" style="display: none;">
+        <form action="/signup" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="pw">Password</label>
+            <input type="password" name="pw" class="form-control" id="pw">
+          </div>
+   
+          <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+      </div>
+  
+    </div>
+   
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var login_btn = document.getElementById("login-btn");
+      var signup_btn = document.getElementById("signup-btn");
+      var login = document.getElementById("login");
+      var signup = document.getElementById("signup");
+      login_btn.onclick = function(){
+        login.style.display="block";
+        signup.style.display="none";
+        login_btn.className = "nav-link active";
+        signup_btn.className = "nav-link"
+      }
+      signup_btn.onclick = function(){
+        signup.style.display="block";
+        login.style.display="none";
+        login_btn.className = "nav-link";
+        signup_btn.className = "nav-link active"
+      }
+
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  </body>
+</html>

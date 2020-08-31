@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/home/upload" enctype="multipart/form-data" method="POST">
+      
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="pic" name='pic'>
+          <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02" >Choose images of your item</label>
+        </div>
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Enter price $</span>
+        </div>
+        <input type="text" name="item_price" class="form-control" aria-label="Amount (to the nearest dollar)">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Number of items</span>
+        </div>
+        <input name="item_num" type="text" class="form-control" aria-label="">
+        <div class="input-group-append">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Item Description</span>
+        </div>
+        <textarea class="form-control" id="item_desc" name="item_desc" aria-label=""></textarea>
+      </div>
+
+      <input class="btn btn-primary" type="submit" value="Add Item" />
+      <a class="btn btn-secondary" href="/home" role="button">Cancel</a>
+    </form>
+
+
+    
+  </body>
+</html>
