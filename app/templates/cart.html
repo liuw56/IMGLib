@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}
+Cart
+{% endblock %}
+
+
+{% block content %}
+      <div class="row row-cols-1 row-cols-md-3">
+        {% for item in items %}
+        <div class="col mb-4">
+          <div class="card" >
+            <a id="{{ item.id }}" href="/home/iteminfo/{{ item.id }}" class="item-link">
+              <img id="img" src="data:image/jpeg;base64,{{ item.img }}"; class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.item_desc }}</p>
+            </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">${{ item.item_price }}</li>
+                <li class="list-group-item">
+                  <label for="amt">Amount</label>
+                  <input id="{{ item.id }}" type="text" value="{{ amt[item.id] }}" id="amt" class="form-control amt" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </li>
+              </ul>
+            <div class="card-body">
+              <a href="/checkout/delete/{{ item.id }}" class="card-link">Delete</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="jumbotron"> 
+        <p class="lead">TOTOAL: ${{ amt['tot'] }}</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">checkout with Paypal</a>
+      </div>
+      
+
+        
+      
+      
+
+      {% endblock %}
+
+
+
+{% block script %}
+
+<script>
+  $('.amt').change(function(){
+    var id = $(this).attr('id');
+    var amt = $(this).val().replace(' ', '')
+    amt = parseInt(amt);
+    if(isNaN(amt)){
+      
+      alert("amount is not valid number");
+    }
+    else if(amt<0){
+      alert("amount must be greater than zero")
+    }
+    else{
+      var url = window.location.href.replace("cart", "changeamt/")+id+'/'+amt;
+      window.location.href = url;
+    }
+    
+    
+  })
+</script>
+{% endblock %}

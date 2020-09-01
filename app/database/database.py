@@ -11,7 +11,8 @@ cart_item = db.Table(
     db.Column('cart_id', db.Integer, db.ForeignKey(
         'cart.id'), primary_key=True),
     db.Column('item_id', db.Integer, db.ForeignKey(
-        'item.id'), primary_key=True)
+        'item.id'), primary_key=True),
+    db.Column('amt', db.Integer, nullable=False)
 )
 
 
@@ -29,6 +30,7 @@ class Item(db.Model):
     item_num = db.Column(db.Integer, nullable=False)
     img = db.Column(db.Text)
     mimetype = db.Column(db.Text)
+    item_name = db.Column(db.Text, nullable=False)
 
 
 class User(UserMixin, db.Model):
@@ -38,3 +40,4 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(45), nullable=False)
     inventory_id = db.Column(db.Integer, db.ForeignKey('inventory.id'))
     cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'))
+    

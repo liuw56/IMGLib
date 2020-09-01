@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title%}
+Item Information
+{% endblock %}
+
+{% block content%}
+<img src="data:image/jpeg;base64,{{ item.img }}" class="img-fluid" alt="Responsive image">
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h2 class="display-4">{{ item.item_name }}</h2>
+      <hr class="my-4">
+      <p class="lead">Item Description: {{ item.item_desc }}</p>
+      <hr class="my-4">
+      <p class="lead">Price: ${{ item.item_price }}</p>
+      <hr class="my-4">
+      <p><a href="/myitems/delete/{{ item.id }}" class="card-link">Delete</a>
+        <a href="/myitems/update/{{ item.id }}" class="card-link">Edit</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script%}
+
+{% endblock %}

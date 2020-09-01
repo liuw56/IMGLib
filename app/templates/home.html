@@ -1,75 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
 
-    <!-- <link rel="stylesheet" href={{ url_for('static',
-    filename='/css/style.css')}}> -->
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
-        <a class="navbar-brand" href="#">IMGLib</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Marketplace <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Items</a>
-            </li>
-            
-          </ul>
-          <div class="form-inline my-2 my-lg-0">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hi {{ name }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="/logout">Log out</a>
-                </div>
-              </div>
-            
+      {% extends "base.html" %}
+
+      {% block title %}
+      Home
+      {% endblock %}
+      
+      {% block content %}
+      <div class="row row-cols-1 row-cols-md-3">
+        {% for item in items %}
+        <div class="col mb-4">
+          <div class="card" >
+            <a id="{{ item.id }}" href="/home/iteminfo/{{ item.id }}" class="item-link">
+              <img id="img" src="data:image/jpeg;base64,{{ item.img }}"; class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.item_desc }}</p>
+            </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">${{ item.item_price }}</li>
+              </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Buy</a>
+              <a href="/home/addtocart/{{ item.id }}" class="card-link">Add to cart</a>
+            </div>
           </div>
         </div>
-      </nav>
-      <a class="btn btn-primary" href="/home/upload" role="button">Add item</a>
+        {% endfor %}
+      </div>
+      
 
+      {% endblock %}
+    {% block script %}
+      {% endblock %}
+      
       
 
 
-
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  </body>
-</html>

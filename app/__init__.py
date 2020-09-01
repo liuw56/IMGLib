@@ -19,8 +19,9 @@ def get(id):
 from .database.routes import database
 from .register.routes import register
 from .home.routes import home
-
+from .checkout.routes import checkout
 
 app.register_blueprint(home)
 app.register_blueprint(register)
 app.register_blueprint(database)
+app.register_blueprint(checkout)

@@ -1,12 +1,43 @@
-#nav {
+.img-fluid{
+  padding-top:3rem;
+  padding-left: 10rem;
+  padding-right: 15rem;
 }
+
+#add-btn{
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-left: 2rem;
+}
+
 #register {
   padding-top: 5rem;
   padding-left: 25rem;
   padding-right: 25rem;
 }
-
-#register-tabs{
+.jumbotron{
+  background-color: transparent;
+}
+#register-tabs{ 
   margin-top: 1rem;
 }
 
+.card{
+  height: 40vm;
+}
+.card-img-top {
+  width: 100%;
+  /* height: 40vw; */
+  object-fit: cover;
+}
+
+.col{
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 1rem;
+}
+
+.cart-item{
+  height: 20rem;
+  display: inline-block;
+}

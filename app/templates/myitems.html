@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+    {% block title %}
+    My Items  
+    {% endblock %}
+      
+      {% block content %}
+      <a id="add-btn" class="btn btn-primary" href="/home/upload" role="button">Add item</a>
+
+      <div class="row row-cols-1 row-cols-md-3">
+
+      {% for item in items %}
+      
+      <div class="col mb-4">
+      <div class="card" style="width: 18rem;">
+        <a id="{{ item.id }}" href="/home/iteminfo/{{ item.id }}" class="item-link">
+          <img id="img" src="data:image/jpeg;base64,{{ item.img }}"; class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">{{ item.item_name }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">${{ item.item_price }}</li>
+        </ul>
+        <div class="card-body">
+          <a id="{{ item.id }}" class="delete" href="#" class="card-link">Delete</a>
+          <a id="{{ item.id }}" class="edit" href="/home/myitems/update/{{ item.id }}" class="card-link">Edit</a>
+        </div>
+      </div>
+      </div>
+
+      {% endfor %}
+      </div>
+
+      <div class="modal delete-confirm" style="display: none;" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close-btn btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="confirm-btn btn btn-primary">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+    {% block script %}
+    <script>
+      var selectedItem;
+      $(".delete").on("click", function() {
+        selectedItem = $(this).attr('id');
+        $('.delete-confirm').toggle();
+      })
+      
+      $(".close-btn").on("click", function() {
+        $('.delete-confirm').toggle();
+      })
+      $(".confirm-btn").on("click", function() {
+        var url = window.location.href.replace("#", "")+"/delete/"+selectedItem;
+        window.location.href = url;
+      })
+    </script>
+      {% endblock %}
+

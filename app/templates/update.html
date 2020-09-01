@@ -4,7 +4,7 @@
     Upload
     {% endblock%}
     {% block content %}
-    <form action="/home/upload" enctype="multipart/form-data" method="POST">
+    <form action="/home/myitems/update/{{ item.id }}" enctype="multipart/form-data" method="POST">
       <p style="color: red;">{{ message }}</p>
       <div class="input-group mb-3">
         <div class="custom-file">
@@ -17,14 +17,14 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Enter price $</span>
         </div>
-        <input type="text" name="item_price" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <input type="text" value="{{ item.item_price }}" name="item_price" class="form-control" aria-label="Amount (to the nearest dollar)">
       </div>
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Item Name</span>
         </div>
-        <input name="item_name" type="text" class="form-control" aria-label="">
+        <input name="item_name" value="{{ item.item_name }}" type="text" class="form-control" aria-label="">
         <div class="input-group-append">
         </div>
       </div>
@@ -33,7 +33,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Number of items</span>
         </div>
-        <input name="item_num" type="text" class="form-control" aria-label="">
+        <input value="{{ item.item_num }}" name="item_num" type="text" class="form-control" aria-label="">
         <div class="input-group-append">
         </div>
       </div>
@@ -42,10 +42,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Item Description</span>
         </div>
-        <textarea class="form-control" id="item_desc" name="item_desc" aria-label=""></textarea>
+        <textarea class="form-control" id="item_desc" name="item_desc" aria-label="">{{ item.item_desc }}</textarea>
       </div>
 
-      <input class="btn btn-primary" type="submit" value="Add Item" />
+      <input class="btn btn-primary" type="submit" value="Update Item" />
       <a class="btn btn-secondary" href="/home" role="button">Cancel</a>
     </form>
 
@@ -55,7 +55,6 @@
     <script>
       $('#upload-file').change(function(){
         var file = $('#upload-file')[0]==null?"":$('#upload-file')[0].files[0].name;
-        console.log(file);
         document.getElementById('file-label').innerHTML=file;
       })
     </script>
