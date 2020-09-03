@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,redirect, request, url_for
+from flask import Blueprint, render_template,redirect, request, url_for, jsonify
 from flask_login import current_user
 
 checkout = Blueprint('checkout', __name__, url_prefix="/checkout")
@@ -36,4 +36,9 @@ def changeAmt(id, amt):
 def payment():
     amt = request.args.get('amt')
     clearCart()
-    return redirect('/checkout/cart');
+    return render_template('confirmation.html', name=current_user.name);
+
+@checkout.route('/checkstock')
+def checkstock():
+    msg = checkStockService()
+    return msg

@@ -4,14 +4,14 @@
     {% endblock %}
       
       {% block content %}
-      <a id="add-btn" class="btn btn-primary" href="/home/upload" role="button">Add item</a>
+      <a id="add-btn" class="btn btn-secondary" href="/home/upload" role="button">Add item</a>
 
       <div class="row row-cols-1 row-cols-md-3">
 
       {% for item in items %}
       
       <div class="col mb-4">
-      <div class="card" style="width: 18rem;">
+      <div class="card" >
         <a id="{{ item.id }}" href="/home/iteminfo/{{ item.id }}" class="item-link">
           <img id="img" src="data:image/jpeg;base64,{{ item.img }}"; class="card-img-top" alt="...">
         </a>

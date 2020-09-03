@@ -5,6 +5,7 @@ Cart
 
 
 {% block content %}
+  <p style="color: red" id="msg"></p>
       <div class="row row-cols-1 row-cols-md-3">
         {% for item in items %}
         <div class="col mb-4">
@@ -32,15 +33,15 @@ Cart
       </div>
       <div id="payment" class="jumbotron"> 
         <p class="lead">TOTOAL: ${{ amt['tot'] }}</p>
-        <div id="paypal-button-container"></div>
-
+        <div style="display: none;" id="paypal-button-container"></div>
+        <button id="checkout-btn" class="btn btn-secondary"">Checkout</a>
       </div>
       
       <div class="jumbotron">
         <p id="empty" class="lead"></p>
       </div>
 
-
+      
   
       {% endblock %}
 
@@ -49,16 +50,25 @@ Cart
 {% block script %}
 <script>
   var amt = '{{ amt.tot }}';
-  console.log(document.getElementsByClassName('card').length)
   if (document.getElementsByClassName('card').length==0){
     $("#payment").toggle();
     document.getElementById('empty').innerHTML = "The cart is empty :(";
   }
+
+  $('#checkout-btn').on('click', function(){
+    url = window.location.href.replace('cart', 'checkstock');
+    $.get(url, function(data){
+      if(data!=''){
+        alert(data);
+        window.location.reload();
+      }else{
+        $('#checkout-btn').toggle();
+        document.getElementById('paypal-button-container').style.display = 'block';
+      }
+    })
+  })
+
   paypal.Buttons({
-    payment: function(){
-      url = window.location.href.replace('cart', 'checkstock');
-      $.get(url);
-    },
     createOrder: function(data, actions) {
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
