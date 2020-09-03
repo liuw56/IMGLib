@@ -15,11 +15,13 @@ def index():
 
 @register.route('/login', methods=['POST'])
 def login():
-    email = request.form.get('email')
-    pw = request.form.get('pw')
+    email = request.form.get('email').replace(" ", "")
+    pw = request.form.get('pw').replace(" ", "")
     user = User.query.filter_by(email=email).first()
     if not user:
         return render_template('index.html', msg = "please sign up first.")
+    if user.password != pw:
+        return render_template('index.html', msg = "Wrong password")
     login_user(user)
     return redirect('/home')
 
@@ -33,7 +35,7 @@ def signup():
     if user:
         return render_template('index.html', msg="The email address has been registered, please log in.")
     login_user(user)
-    return "user added {}".format(user)
+    return redirect('/')
 
 
 @register.route('/logout', methods=['GET'])

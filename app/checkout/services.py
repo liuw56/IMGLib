@@ -15,6 +15,7 @@ def getCartItem():
         amt[item.id] = rec[2]
         print(rec)
         amt['tot'] += int(rec[2])* float(item.item_price)
+    amt['tot'] = round(amt['tot'], 2)
     print(amt)
     return [cur_cart.items, amt]
 

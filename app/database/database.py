@@ -18,13 +18,13 @@ cart_item = db.Table(
 
 class cart(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    items = db.relationship('Item', secondary=cart_item, lazy='subquery',
+    items = db.relationship('Item', cascade="all", secondary=cart_item, lazy='subquery',
                             backref=db.backref('carts', lazy=True))
 
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    inventory_id = db.Column(db.Integer, db.ForeignKey('inventory.id'))
+    inventory_id = db.Column(db.Integer, db.ForeignKey('inventory.id', ondelete="cascade"))
     item_desc = db.Column(db.String(50))
     item_price = db.Column(db.Integer, nullable=False)
     item_num = db.Column(db.Integer, nullable=False)
@@ -38,6 +38,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(45), nullable=False)
-    inventory_id = db.Column(db.Integer, db.ForeignKey('inventory.id'))
-    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'))
+    inventory_id = db.Column(db.Integer, db.ForeignKey('inventory.id', ondelete="cascade"))
+    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id', ondelete="cascade"))
     

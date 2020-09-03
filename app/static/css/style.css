@@ -15,6 +15,7 @@
   padding-left: 25rem;
   padding-right: 25rem;
 }
+
 .jumbotron{
   background-color: transparent;
 }
@@ -25,9 +26,9 @@
 .card{
   height: 40vm;
 }
+
 .card-img-top {
   width: 100%;
-  /* height: 40vw; */
   object-fit: cover;
 }
 
@@ -41,6 +42,11 @@
   height: 20rem;
   display: inline-block;
 }
-#empty{
-  
+
+form{
+  margin: 4rem;
+}
+
+.btns {
+  margin-top: 1rem;
 }

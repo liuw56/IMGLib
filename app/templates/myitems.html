@@ -12,7 +12,7 @@
       
       <div class="col mb-4">
       <div class="card" >
-        <a id="{{ item.id }}" href="/home/iteminfo/{{ item.id }}" class="item-link">
+        <a id="{{ item.id }}" href="/home/myiteminfo/{{ item.id }}" class="item-link">
           <img id="img" src="data:image/jpeg;base64,{{ item.img }}"; class="card-img-top" alt="...">
         </a>
         <div class="card-body">
@@ -23,7 +23,7 @@
           <li class="list-group-item">${{ item.item_price }}</li>
         </ul>
         <div class="card-body">
-          <a id="{{ item.id }}" class="delete" href="#" class="card-link">Delete</a>
+          <a id="{{ item.id }}" class="delete" href="/home/myitems/delete/{{ item.id }}" class="card-link">Delete</a>
           <a id="{{ item.id }}" class="edit" href="/home/myitems/update/{{ item.id }}" class="card-link">Edit</a>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
+              <h5 class="modal-title">Notice</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

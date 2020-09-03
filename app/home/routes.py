@@ -19,7 +19,7 @@ def myimages():
     if not checkSession():
         return redirect('/')
     items = getInventoryContent()
-    return render_template('myitems.html', items=items, user=current_user)
+    return render_template('myitems.html', items=items, name=current_user.name)
 
 @home.route('/upload', methods=['GET','POST'])
 def upload():
@@ -32,7 +32,7 @@ def upload():
         if not pic:
             return render_template('upload.html', name=current_user.name, message="Please upload a image")
         if(not pic.filename.lower().endswith(('.png', '.jpg', '.jpeg'))):
-            return "Please select files with .png, .jpg or .jpeg extensions"
+            return render_template('upload.html', name=current_user.name, message="Please select files with .png, .jpg or .jpeg extensions")
         pic_base64 = base64.b64encode(pic.read()).decode('utf-8')
         item_price = request.form.get('item_price').strip()
         item_num = request.form.get('item_num').strip()
@@ -56,6 +56,15 @@ def iteminfo(id):
     if not item:
         return "Item Not Found"
     return render_template('iteminfo.html', item=item)
+
+@home.route('/myiteminfo/<int:id>')
+def myiteminfo(id):
+    if not checkSession():
+        return redirect('/')
+    item = Item.query.filter_by(id=id).first()
+    if not item:
+        return "Item Not Found"
+    return render_template('myiteminfo.html', item=item)
 
 @home.route('myitems/delete/<int:id>')
 def delete(id):
