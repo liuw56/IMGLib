@@ -74,13 +74,14 @@ def add(id):
     item = Item.query.filter_by(id=id).first()
     if not cart or not item:
         return False
-    exist_rec = db.engine.execute('select * from cart_item where cart_id={} and item_id={}'.format(cur_cart.id, item.id)).fetchall()[0]
-    if not exist_rec:
+    exist_rec = db.engine.execute('select * from cart_item where cart_id={} and item_id={}'.format(cur_cart.id, item.id)).fetchall()
+    if exist_rec==[]:
         cur_cart.items.append(item)
         db.session.commit()
         stat = 'update cart_item set amt={} where cart_id={} and item_id={}'.format(1, cur_cart.id, item.id)
         db.engine.execute(stat)
     else:
+        exist_rec = exist_rec[0]
         amt = int(exist_rec[2])
         db.engine.execute('update cart_item set amt={} where cart_id={} and item_id={}'.format(amt+1, cur_cart.id, item.id))
         db.session.commit()

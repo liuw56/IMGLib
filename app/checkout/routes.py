@@ -31,3 +31,9 @@ def changeAmt(id, amt):
         return redirect('/checkout/delete/{}'.format(id))
     chageItemAmt(id, amt)
     return redirect('/checkout/cart')
+
+@checkout.route('/payment')
+def payment():
+    amt = request.args.get('amt')
+    clearCart()
+    return redirect('/checkout/cart');

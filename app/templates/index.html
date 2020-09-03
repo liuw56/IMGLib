@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href={{ url_for('static',
     filename='/css/style.css')}}> -->
     <link rel="stylesheet" href="../static/css/style.css" />
-    <title>Document</title>
+    <title>IMGLib</title>
   </head>
   <body>
     
@@ -27,6 +27,10 @@
         <a class="nav-link" id="signup-btn" href="#">Sign up</a>
       </li>
     </ul>
+
+    <div>
+      <h5 style="color: red; margin-left: 1rem">{{ msg }}</h5>
+    </div>
     <div id="register">
       <div id="login">
         <form action="/login" method="POST">

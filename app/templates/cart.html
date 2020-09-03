@@ -30,21 +30,58 @@ Cart
         </div>
         {% endfor %}
       </div>
-      <div class="jumbotron"> 
+      <div id="payment" class="jumbotron"> 
         <p class="lead">TOTOAL: ${{ amt['tot'] }}</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">checkout with Paypal</a>
+        <div id="paypal-button-container"></div>
+
       </div>
       
+      <div class="jumbotron">
+        <p id="empty" class="lead"></p>
+      </div>
 
-        
-      
-      
 
+  
       {% endblock %}
 
 
 
 {% block script %}
+<script>
+  var amt = '{{ amt.tot }}';
+  console.log(document.getElementsByClassName('card').length)
+  if (document.getElementsByClassName('card').length==0){
+    $("#payment").toggle();
+    document.getElementById('empty').innerHTML = "The cart is empty :(";
+  }
+  paypal.Buttons({
+    payment: function(){
+      url = window.location.href.replace('cart', 'checkstock');
+      $.get(url);
+    },
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: amt
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // This function captures the funds from the transaction.
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        url = window.location.href.replace('cart', 'payment?amt='+amt);
+        actions.redirect(url)
+    })},
+    onError: function(error){
+      alert(error);
+    }
+  }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>
 
 <script>
   $('.amt').change(function(){

@@ -101,6 +101,5 @@ def update(id):
 
 @home.route('/addtocart/<int:id>')
 def addToCart(id):
-    print("adding")
     add(id)
     return redirect('/home')

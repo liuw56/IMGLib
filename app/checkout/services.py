@@ -29,3 +29,14 @@ def chageItemAmt(id, amt):
     db.engine.execute('Update cart_item set amt={} where cart_id={} and item_id={}'.format(amt, current_user.cart_id, id))
     db.session.commit()
     return
+
+def clearCart():
+    cur_cart = cart.query.filter_by(id=current_user.cart_id).first()
+    cur_cart.items = []
+    db.session.commit()
+    return
+
+def checkStock(items):
+    cur_catr = cart.query.filter_by(id=current_user.cart_id).first()
+    for item in cur_cart.items:
+        amt = db.engine.execute('Select amt from cart_item where cart_id={} and item_id={}}'.format(current_user.cart_id,id))

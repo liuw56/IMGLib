@@ -1,7 +1,11 @@
 
 from ..__init__ import db
 from ..database.database import User, login_manager, Inventory, cart
+
 def addUser(name, email, pw):
+    check_user = User.query.filter_by(email=email).first()
+    if check_user:
+        return True
     user = User(name=name, email=email, password=pw)
     inventory = Inventory()
     cart_new = cart()
